@@ -1,25 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snake Google</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake Game</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="game-container">
-    <h1>Snake</h1>
-
-    <div class="score-container">
-      Puntaje: <span id="score">0</span>
+  <!-- Menucito -->
+  <div id="menu" class="screen active">
+    <div class="menu-box">
+      <div class="logo">
+        <span class="logo-snake">🐍</span>
+        <h1>SNAKE</h1>
+        <p class="subtitle">Clásico juego de la serpiente</p>
+      </div>
+      <div class="best-score-display">
+        <span class="label">Récord</span>
+        <span id="menu-best-score">0</span>
+      </div>
+      <div class="menu-controls">
+        <button id="btn-start" class="btn-primary">▶ Jugar</button>
+        <div class="difficulty-row">
+          <label>Dificultad:</label>
+          <select id="difficulty">
+            <option value="150">Fácil</option>
+            <option value="100" selected>Normal</option>
+            <option value="60">Difícil</option>
+          </select>
+        </div>
+      </div>
+      <div class="key-hints">
+        <div class="hint"><kbd>↑ ↓ ← →</kbd> Mover</div>
+        <div class="hint"><kbd>P</kbd> Pausa</div>
+        <div class="hint"><kbd>R</kbd> Reiniciar</div>
+      </div>
     </div>
-
-    <canvas id="gameCanvas" width="600" height="600"></canvas>
-
-    <button id="restartBtn">Reiniciar</button>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Juegito -->
+  <div id="game-screen" class="screen">
+    <div class="hud">
+      <div class="hud-item">
+        <span class="hud-label">Puntuación</span>
+        <span id="score">0</span>
+      </div>
+      <div class="hud-item center">
+        <span id="pause-badge" class="badge hidden">⏸ PAUSADO</span>
+      </div>
+      <div class="hud-item right">
+        <span class="hud-label">Récord</span>
+        <span id="best-score">0</span>
+      </div>
+    </div>
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas"></canvas>
+    </div>
+    <div class="game-footer">
+      <button id="btn-menu" class="btn-ghost">← Menú</button>
+      <span class="footer-hint"><kbd>P</kbd> pausa · <kbd>R</kbd> reiniciar</span>
+    </div>
+  </div>
+
+  <!-- GO -->
+  <div id="game-over-screen" class="screen">
+    <div class="menu-box">
+      <div class="game-over-header">
+        <span class="go-emoji">💀</span>
+        <h2>Game Over</h2>
+      </div>
+      <div class="score-summary">
+        <div class="score-row">
+          <span class="label">Puntuación</span>
+          <span id="final-score" class="big-number">0</span>
+        </div>
+        <div class="score-row">
+          <span class="label">Récord</span>
+          <span id="final-best" class="big-number accent">0</span>
+        </div>
+        <div id="new-record-msg" class="new-record hidden">🏆 ¡Nuevo récord!</div>
+      </div>
+      <div class="menu-controls">
+        <button id="btn-restart" class="btn-primary">▶ Jugar de nuevo</button>
+        <button id="btn-back-menu" class="btn-ghost">← Menú principal</button>
+      </div>
+      <p class="footer-hint">También podés presionar <kbd>R</kbd></p>
+    </div>
+  </div>
+
+  <script src="juegito.js"></script>
 </body>
 </html>
